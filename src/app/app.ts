@@ -1,12 +1,11 @@
-import { Component, signal } from '@angular/core';
-import { WorldClock } from './pages/world-clock/world-clock';
-import { DateDifference } from './pages/date-difference/date-difference';
-import { RouterOutlet } from "../../node_modules/@angular/router/types/_router_module-chunk";
+import { Component } from '@angular/core';
+import { Header } from './common/header/header';
+import { RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [WorldClock, DateDifference],
+  imports: [Header, RouterOutlet],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
