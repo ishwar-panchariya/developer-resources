@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+.common-section {
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    padding: 2rem;
+    background-color: rgb(255, 255, 255);
+}

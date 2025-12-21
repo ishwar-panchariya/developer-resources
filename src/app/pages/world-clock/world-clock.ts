@@ -54,7 +54,7 @@ export class WorldClock implements OnInit, OnDestroy {
   // ---------- Data Loading ---------- 
   private loadTimeZones(): void {
     this.http
-      .get<TimeZoneItem[]>('public/world-timezones.json')
+      .get<TimeZoneItem[]>('world-timezones.json')
       .subscribe(data => {
         this.timezones.set(data);
 

@@ -1,0 +1,41 @@
+<div class="date-diff-card">
+
+  <h2>Date Difference Calculator</h2>
+  <p class="subtitle">Find the exact difference between two dates</p>
+
+  <div class="inputs">
+    <div class="">
+      <label for="start">Start Date</label>
+      <input
+        id="start"
+        type="date"
+        class="form-control"
+        (change)="onStartChange($event)"
+      />
+    </div>
+
+    <div class="">
+      <label for="end">End Date</label>
+      <input
+        id="end"
+        type="date"
+        class="form-control"
+        (change)="onEndChange($event)"
+      />
+    </div>
+  </div>
+
+  @if (difference(); as d) {
+  <div class="result">
+    <div class="row">
+      <strong>Difference: {{ d.years }} years, {{ d.months }} months, {{ d.days }} days
+      </strong>
+    </div>
+    <div class="row">
+      <strong>Total {{ d.totalDays }} Days</strong>
+    </div>
+  </div>
+}
+
+
+</div>
