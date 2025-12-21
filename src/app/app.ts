@@ -1,9 +1,10 @@
 import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { WorldClock } from './pages/world-clock/world-clock';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  standalone: true,
+  imports: [WorldClock],
   templateUrl: './app.html',
   styleUrl: './app.scss'
 })
