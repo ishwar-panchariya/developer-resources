@@ -1,15 +1,46 @@
 <div class="container w-50 mt-5">
-    <form class="row g-3 border border-1 rounded-2 p-3">
-        <h2 class="text-center">Login</h2>
-        <div class="col-md-12">
-            <input type="email" class="form-control" placeholder="Email">
-        </div>
-        <div class="col-md-12">
-            <input type="password" class="form-control" placeholder="Password">
-        </div>
-        <div class="col-12 d-grid">
-            <button type="submit" class="btn btn-primary">Sign in</button>
-        </div>
+  <form
+    class="row g-3 border border-1 rounded-2 p-3"
+    (submit)="onSubmit($event)"
+  >
+    <h2 class="text-center">Login</h2>
+
+    <div class="col-md-12">
+      <input
+        type="email"
+        class="form-control"
+        placeholder="Email"
+        (input)="email.set($any($event.target).value)"
+        required
+      />
+    </div>
+
+    <div class="col-md-12">
+      <input
+        type="password"
+        class="form-control"
+        placeholder="Password"
+        (input)="password.set($any($event.target).value)"
+        required
+      />
+    </div>
+
+    <div class="col-12 d-grid">
+      <button class="btn btn-primary" [disabled]="auth.loading()">
+        @if (auth.loading()) {
+            Signing in...
+        } @else {
+            Sign In
+        }
+      </button>
+    </div>
+
+    @if (auth.error()) {
+      <div class="text-danger text-center">
+        {{ auth.error() }}
+      </div>
+    }
+
         <span>Don't have account? <a routerLink="/register">Sign Up</a> here.</span>
     </form>
 </div>

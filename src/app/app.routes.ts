@@ -8,5 +8,6 @@ export const routes: Routes = [
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: 'login', component: SignIn },
     { path: 'register', component: SignUp },
+    { path: 'resources', loadComponent: () => import('./pages/resources/resources').then(m => m.Resources) },
     { path: '**', redirectTo: 'home', pathMatch: 'full' }
 ];
