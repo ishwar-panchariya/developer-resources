@@ -1,15 +1,17 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
+import { environment } from "./environments/environment.development";
 
 const firebaseConfig = {
-  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
-  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
-  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
-  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
-  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
-  appId: import.meta.env.VITE_FIREBASE_APP_ID,
-  measurementId: import.meta.env.VITE_MEASUREMENT_ID
+  apiKey: environment.firebaseConfig.apiKey,
+  authDomain: environment.firebaseConfig.authDomain,
+  projectId: environment.firebaseConfig.projectId,
+  storageBucket: environment.firebaseConfig.storageBucket,
+  messagingSenderId: environment.firebaseConfig.messagingSenderId,
+  appId: environment.firebaseConfig.appId,
+  measurementId: environment.firebaseConfig.measurementId
 };
 
+console.log(firebaseConfig)
 export const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
