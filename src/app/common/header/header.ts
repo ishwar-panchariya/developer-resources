@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-import { JsonPipe } from '@angular/common';
 
 @Component({
   selector: 'app-header',
-  imports: [RouterLink, JsonPipe],
+  imports: [RouterLink],
   templateUrl: './header.html',
   styleUrl: './header.scss',
 })
