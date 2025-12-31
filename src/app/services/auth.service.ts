@@ -15,10 +15,13 @@ export class AuthService {
     readonly loading = signal(false);
     readonly error = signal<string | null>(null);
 
+    readonly initialized = signal(false);
+
     constructor(private router: Router) {
         // 🔥 Keep user state in sync with Firebase
         onAuthStateChanged(auth, user => {
             this.user.set(user);
+            this.initialized.set(true);        
         });
     }
 

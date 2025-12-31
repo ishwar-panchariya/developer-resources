@@ -1,2 +1,9 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+@if (!auth.initialized()) {
+  <div class="text-center mt-5">
+    <span class="spinner-border"></span>
+    <p>Checking authentication...</p>
+  </div>
+} @else {
+  <app-header />
+  <router-outlet />
+}

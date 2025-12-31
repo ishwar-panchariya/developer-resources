@@ -1,1 +1,165 @@
-<p>resources works!</p>
+<div class="container col-md-6 col-12 mt-5">
+    <div class="card p-3 mb-4">
+    <h5>Add Resource</h5>
+
+    <select
+        class="form-select mb-2"
+        [value]="category()"
+        (change)="onCategoryChange($event)"
+        >
+        <option value="">Select Category</option>
+        @for (c of categories; track c) {
+            <option [value]="c">{{ c }}</option>
+        }
+    </select>
+
+    <input
+        class="form-control mb-2"
+        [value]="title()"
+        (input)="onTitleInput($event)"
+        placeholder="Title"
+        />
+
+    <input
+        class="form-control mb-2"
+        [value]="command()"
+        (input)="onCommandInput($event)"
+        placeholder="Command"
+        />
+
+    <div class="d-grid gap-1 d-md-flex justify-content-md-end">
+        <button class="btn d-block btn-secondary me-md-2" type="button" (click)="resetForm()">
+            Cancel
+        </button>
+        <button class="btn d-block btn-primary" type="button" (click)="save()">
+            Save
+        </button>
+    </div>
+    </div>
+</div>
+
+<div class="container">
+    @for (category of groupedCategories(); track category) {
+      <h4 class="mt-4">{{ category }}</h4>
+    
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Title</th>
+                <th>Command</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+    
+            <tbody>
+            @for (res of groupedResources()[category]; track res.id) {
+                <tr>
+                <!-- TITLE -->
+                <td>
+                    @if (editingId() === res.id) {
+                    <input
+                        class="form-control form-control-sm"
+                        [value]="editTitle()"
+                        (input)="editTitle.set($any($event.target).value)"
+                    />
+                    } @else {
+                    {{ res.title }}
+                    }
+                </td>
+    
+                <!-- COMMAND -->
+                <td>
+                    @if (editingId() === res.id) {
+                    <input
+                        class="form-control form-control-sm"
+                        [value]="editCommand()"
+                        (input)="editCommand.set($any($event.target).value)"
+                    />
+                    } @else {
+                    <code>{{ res.command }}</code>
+                    }
+                </td>
+    
+                <!-- ACTIONS -->
+                <td class="text-nowrap">
+                    @if (editingId() === res.id) {
+                    <button
+                        class="btn btn-sm btn-success me-1"
+                        (click)="saveEdit(res.id!)"
+                    >
+                        Save
+                    </button>
+    
+                    <button
+                        class="btn btn-sm btn-secondary"
+                        (click)="cancelEdit()"
+                    >
+                        Cancel
+                    </button>
+                    } @else {
+                    <button
+                        class="btn btn-sm btn-outline-primary me-1"
+                        (click)="startEdit(res)"
+                    >
+                        Edit
+                    </button>
+    
+                    <button
+                        class="btn btn-sm btn-outline-danger"
+                        (click)="openDeleteModal(res)"
+                    >
+                        Delete
+                    </button>
+                    }
+                </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    }
+</div>
+
+@if (showDeleteModal()) {
+  <div class="modal fade show d-block" tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Delete</h5>
+          <button
+            type="button"
+            class="btn-close"
+            (click)="closeDeleteModal()"
+          ></button>
+        </div>
+
+        <div class="modal-body">
+          Are you sure you want to delete
+          <strong>{{ deleteTitle() }}</strong>?
+          <br />
+          This action cannot be undone.
+        </div>
+
+        <div class="modal-footer">
+          <button
+            class="btn btn-secondary"
+            (click)="closeDeleteModal()"
+          >
+            Cancel
+          </button>
+
+          <button
+            class="btn btn-danger"
+            (click)="confirmDelete()"
+          >
+            Delete
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- Backdrop -->
+  <div class="modal-backdrop fade show"></div>
+}

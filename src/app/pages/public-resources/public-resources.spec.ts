@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { Resources } from './resources';
+import { PublicResources } from './public-resources';
 
-describe('Resources', () => {
-  let component: Resources;
-  let fixture: ComponentFixture<Resources>;
+describe('PublicResources', () => {
+  let component: PublicResources;
+  let fixture: ComponentFixture<PublicResources>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Resources]
+      imports: [PublicResources]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(Resources);
+    fixture = TestBed.createComponent(PublicResources);
     component = fixture.componentInstance;
     await fixture.whenStable();
   });

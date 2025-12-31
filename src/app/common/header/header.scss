@@ -1,0 +1,12 @@
+a {
+    height: 40px;
+    display: flex;
+    align-items: center;
+}
+.active {
+    background: rgb(99, 99, 216);
+    color: white;
+    font-weight: bold;
+    border-radius: 4px;
+    padding: 8px;
+}
