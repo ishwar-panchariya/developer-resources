@@ -87,7 +87,7 @@ export class WorldClock implements OnInit, OnDestroy {
   readonly formatter = computed(() => { 
     const zone = this.selectedZone(); 
     if (!zone) { return null; } 
-    return new Intl.DateTimeFormat('en-US', { 
+    return new Intl.DateTimeFormat('en-IN', { 
       timeZone: zone.id, 
       hour: '2-digit', 
       minute: '2-digit', 
