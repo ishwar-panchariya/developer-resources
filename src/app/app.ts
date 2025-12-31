@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Header } from './common/header/header';
 import { RouterOutlet } from '@angular/router';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -10,5 +11,6 @@ import { RouterOutlet } from '@angular/router';
   styleUrl: './app.scss'
 })
 export class App {
+  constructor(public auth: AuthService) {}
 
 }

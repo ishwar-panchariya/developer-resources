@@ -6,8 +6,16 @@ export const authGuard: CanActivateFn = () => {
     const auth = inject(AuthService);
     const router = inject(Router);
 
-    if (auth.user()) return true;
+     // ⏳ While Firebase is initializing → allow navigation
+    if (!auth.initialized()) {
+        return true;
+    }
 
-    router.navigate(['/login']);
-    return false;
+    // ✅ Authenticated
+    if (auth.user()) {
+        return true;
+    }
+
+    // ❌ Not authenticated
+    return router.createUrlTree(['/login']);
 }

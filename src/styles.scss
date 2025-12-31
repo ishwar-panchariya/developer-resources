@@ -1,9 +1,27 @@
 /* You can add global styles to this file, and also import other style files */
 .common-section {
     height: 400px;
-    display: flex;
-    justify-content: center;
-    text-align: center;
     padding: 2rem;
     background-color: rgb(255, 255, 255);
+}
+
+.icon-tooltip-wrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.icon-tooltip {
+  position: absolute;
+  bottom: 125%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #000;
+  color: #fff;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 4px;
+  white-space: nowrap;
+  opacity: 0.9;
+  z-index: 999;
 }
