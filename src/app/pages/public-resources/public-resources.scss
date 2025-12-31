@@ -1,0 +1,32 @@
+.command-box {
+  display: flex;
+  align-items: center;
+  background-color: #f1f3f5;
+  border-radius: 6px;
+  padding: 8px 10px;
+  gap: 10px;
+}
+
+/* Scroll ONLY the code */
+.command-scroll {
+  flex: 1;
+  overflow-x: auto;
+}
+
+.command-scroll code {
+  white-space: nowrap;
+  display: inline-block;
+  color: #d63384; // bootstrap pink-ish
+  font-size: 0.9rem;
+}
+
+/* Fixed copy button */
+.command-action {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
