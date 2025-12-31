@@ -23,7 +23,6 @@ export class PublicResources {
     const map: Record<string, Resource[]> = {};
 
     for (const r of this.resourceService.resources()) {
-      console.log(r)
       map[r.category] ??= [];
       map[r.category].push(r);
     }

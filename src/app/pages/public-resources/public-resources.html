@@ -1,24 +1,34 @@
 <div class="container-fluid">
+    <h2>Resources</h2>
+    <hr>
     @for (category of groupedCategories(); track category) {
     <h4 class="mt-4">{{ category }}</h4>
-    @for (res of groupedResources()[category]; track res.id) {
-        <div class="row">
-            <div class="col-md-auto">
-                <h6>{{ res.title }}</h6>
-                <div class="alert alert-secondary overflow-x-auto white-space-nowrap icon-tooltip-wrapper"
-                    (mouseenter)="hoveredId.set(res.id!)"
-                    (mouseleave)="hoveredId.set(null)"
-                    [class.text-success]="copiedId() === res.id"
-                    (click)="copy(res.command, res.id!)"
-                    data-bs-toggle="tooltip" data-bs-placement="top"
-                    data-bs-custom-class="custom-tooltip"
-                    title="Copy"
-                    >
-                        <code>{{ res.command }}</code>
-                    </div>
-                </div>
+
+    <div class="row g-3">
+      @for (res of groupedResources()[category]; track res.id) {
+
+        <div class="col-12 col-md-3">
+          <h6>{{ res.title }}</h6>
+
+          <div class="command-box">
+            <div class="command-scroll">
+              <code>{{ res.command }}</code>
             </div>
-        }
-    
-    }
+
+            <div class="command-action">
+              <i
+                class="bi bi-clipboard-fill cursor-pointer"
+                (mouseenter)="hoveredId.set(res.id!)"
+                (mouseleave)="hoveredId.set(null)"
+                [class.text-success]="copiedId() === res.id"
+                (click)="copy(res.command, res.id!)"
+                title="{{ copiedId() === res.id ? 'Copied!' : 'Copy' }}"
+              ></i>
+            </div>
+          </div>
+        </div>
+
+      }
+    </div>
+  }
 </div>
