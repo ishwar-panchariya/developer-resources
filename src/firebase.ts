@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
-import { environment } from "./environments/environment.development";
+import { environment } from "./environments/environment";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -13,7 +13,6 @@ const firebaseConfig = {
   measurementId: environment.firebaseConfig.measurementId
 };
 
-console.log(firebaseConfig)
 export const firebaseApp = initializeApp(firebaseConfig);
 export const auth = getAuth(firebaseApp);
 export const db = getFirestore(firebaseApp);
