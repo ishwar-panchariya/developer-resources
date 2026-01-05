@@ -17,11 +17,17 @@ export class AuthService {
 
     readonly initialized = signal(false);
 
+    private initResolver!: () => void;
+    private initPromise = new Promise<void>(resolve => {
+        this.initResolver = resolve;
+    });
+
     constructor(private router: Router) {
         // 🔥 Keep user state in sync with Firebase
         onAuthStateChanged(auth, user => {
             this.user.set(user);
-            this.initialized.set(true);        
+            this.initialized.set(true);      
+            this.initResolver();  
         });
     }
 
@@ -90,6 +96,10 @@ export class AuthService {
             default:
             return 'Something went wrong. Please try again';
         }
+    }
+
+    waitForAuthInit() {
+        return this.initPromise;
     }
 
 }
